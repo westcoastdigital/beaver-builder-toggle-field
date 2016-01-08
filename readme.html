@@ -9,15 +9,17 @@
 </code>
 
 <h3>Settings</h3>
-<p>You can change the labels from True and False, as well as the active colour</p>
+<p>You can change the labels and values from True and False, as well as the active colour</p>
 
 <code>
 'toggle'     => array(
 'type'          => 'toggle',
 'label'         => __( 'Toggle Field', 'fl_builder' ),
 'default'       => 'true',
-'true'          => 'Yes',
-'false'         => 'No',
+'options'       => array(
+  'yes'         => 'Yes' // yes becomes value and Yes becomes label instead of true
+  'no'          => 'No' // no becomes value and No becomes label instead of false
+),
 'color'         => 'red',
 ), 
 </code>

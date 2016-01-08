@@ -1,6 +1,6 @@
 <?php
 
-function fl_toggle_field($name, $value, $field) {
+function fl_toggle_field_true($name, $value, $field) {
    
 ?>
 <style>
@@ -68,27 +68,46 @@ function fl_toggle_field($name, $value, $field) {
 }
 </style>
 
+<div class="switch-field">
+
 <?php
-    if (array_key_exists('true', $field)) {
-       $true = $field['true'];
-   } else {
-       $true = 'True';
-   }
-    if (array_key_exists('false', $field)) {
-       $false = $field['false'];
-   } else {
-       $false = 'False';
-   }
+
+    if (array_key_exists('options', $field)) {
+        
+        $options = $field['options'];
+        
+        $keys = array_keys($options);
+        
+        $leftKey = $keys[0];
+        
+        $rightKey = $keys[1];
+	
+        $leftValue = $options[$leftKey];
+        
+        $rightValue = $options[$rightKey];	
+	
+    } else {
+        
+        $leftKey = 'true';
+        
+        $rightKey = 'false';
+        
+        $leftValue = 'True';
+        
+        $rightValue = 'False';
+        
+    }
 ?>
 
-    <div class="switch-field">
-      <input type="radio" id="switch_left" name="<?php echo $name; ?>" value="true" <?php if (isset($value) && $value=="true") echo "checked"; ?> />
-      <label for="switch_left"><?php echo $true; ?></label>
-      <input type="radio" id="switch_right" name="<?php echo $name; ?>" value="false" <?php if (isset($value) && $value=="false") echo "checked"; ?> />
-      <label for="switch_right"><?php echo $false; ?></label>
+      <input type="radio" id="switch_left" name="<?php echo $name; ?>" value="<?php echo $leftKey; ?>" <?php if (isset($value) && $value==$leftKey) echo "checked"; ?> />
+      <label for="switch_left"><?php echo $leftValue; ?></label>
+    
+      <input type="radio" id="switch_right" name="<?php echo $name; ?>" value="<?php echo $rightKey; ?>" <?php if (isset($value) && $value==$rightKey) echo "checked"; ?> />
+      <label for="switch_right"><?php echo $rightValue; ?></label>
+    
     </div>
 <?php
 
 }
 
-add_action('fl_builder_control_toggle', 'fl_toggle_field', 1, 3);
+add_action('fl_builder_control_toggle', 'fl_toggle_field_true', 1, 3);

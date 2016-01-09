@@ -1,4 +1,16 @@
 <h1>Using the Field</h2>
+<h3>How to Load</h3>
+<p>To load the field, unzip to your plugin folder and then run the following function</p>
+
+<code>
+  function fp_add_toggle() {
+    
+        include( plugin_dir_path( __FILE__ ) . '/beaver-builder-toggle-field/toggle.php');
+    
+}
+add_action( 'init', 'fp_add_toggle' );
+</code>
+
 <h3>Basic Usage</h3>
 
 <code>
@@ -9,17 +21,19 @@
 </code>
 
 <h3>Settings</h3>
-<p>You can change the labels and values from True and False, as well as the active colour</p>
+<p>You can change the labels and values from True and False, change the active and non active colour and have up to three buttons</p>
 
 <code>
 'toggle'     => array(
 'type'          => 'toggle',
 'label'         => __( 'Toggle Field', 'fl_builder' ),
-'default'       => 'true',
+'default'       => 'no',
 'options'       => array(
-  'yes'         => 'Yes' // yes becomes value and Yes becomes label instead of true
-  'no'          => 'No' // no becomes value and No becomes label instead of false
+  'yes'         => 'Yes',
+  'no'          => 'No',
+  'maybe'       => 'Maybe',
 ),
-'color'         => 'red',
+'oncolor'         => 'red',
+'offcolor'        => '#d9edf7',
 ), 
 </code>
